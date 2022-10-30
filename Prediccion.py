@@ -43,7 +43,10 @@ while True:
         x2 = bbox[2]
         y2 = bbox[3]
         data = frame[y1:y2, x1:x2]
-        obje = cv2.resize(data, (200, 200), interpolation = cv2.INTER_CUBIC) #Redimensiones de las fotos
+        try:
+            obje = cv2.resize(data, (200, 200), interpolation = cv2.INTER_CUBIC) #Redimensiones de las fotos
+        except Exception as e:
+            print(e)
         x = img_to_array(obje) # Se convierte la imagen a una matriz
         x = np.expand_dims(x, axis=0) #Se agrega un nuevo eje
         vector = cnn.predict(x) # Sera un arreglo de 2 dimensiones, donde se va a poner 1 en la clase que crea correcta
