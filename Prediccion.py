@@ -1,10 +1,13 @@
 #----------------------------------------- Se importan las librerias ------------------------------------------
+from ast import While
 import cv2
 import Informacion_manos as im
+from playsound import playsound
 import os
 import  numpy as np
 from keras_preprocessing.image import  load_img, img_to_array
 from tensorflow.python.keras.models import load_model
+import time
 
 #------------------------------------------------------ Ubicacion del modelo y los pesos ---------------------------------------------------------
 modelo = 'tmp\saved_model\SavedModel.h5'
@@ -52,20 +55,31 @@ while True:
         vector = cnn.predict(x) # Sera un arreglo de 2 dimensiones, donde se va a poner 1 en la clase que crea correcta
         resultado = vector[0] # [1,0,0] [0,1,0] [0,0,1]
         respuesta = np.argmax(resultado) #Nos entrega el indice del valor más alto
+        contador = 0
         if respuesta == 0:
             print(resultado)
             #cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
             cv2.putText(frame, '{}'.format(dire_img[0]), (x1, y1 - 100), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            while True:
+                playsound(u"audio/" + "{}".format(dire_img[0]) + ".mp3")
+                contador = False
+            
         elif respuesta == 1:
             print(resultado)
             # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
             cv2.putText(frame, '{}'.format(dire_img[1]), (x1, y1 - 100), 1, 2.5, (255, 255, 0), 3, cv2.LINE_AA)
+            while True:
+                playsound(u"audio/" + "{}".format(dire_img[1]) + ".mp3")
         elif respuesta == 2:
             print(resultado)
             # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
             cv2.putText(frame, '{}'.format(dire_img[2]), (x1, y1 - 100), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            while True:
+                playsound(u"audio/" + "{}".format(dire_img[2]) + ".mp3")
         else:
             cv2.putText(frame, 'OBJETO DESCONOCIDO', (x1, y1 - 5), 1,1.3, (0, 255, 255), 1, cv2.LINE_AA)
+            while True:
+                playsound(u"audio\Objetodesconocido.mp3")
 
     cv2.imshow("Clasificador", frame)
     k = cv2.waitKey(1)
