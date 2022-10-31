@@ -2,10 +2,13 @@
 from xml.etree.ElementTree import tostring
 import cv2
 import Informacion_manos as im #Programa el cual contiene la deteccion y seguimiento de manos
+import tts as voz
 import os
 
 #---------------------------------------Se crea la carpeta donde se almacenara el entrenamiento ----------------
 nombre = input('Ingrese el nombre del objeto: ')
+voz.crearaudio(nombre)
+nombre = nombre.replace(" ", "")
 direccion = 'Fotos/Entrenamiento'
 carpeta = direccion + '/' + nombre
 if not os.path.exists(carpeta):
