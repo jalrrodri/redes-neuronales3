@@ -1,0 +1,1 @@
+aqui van los archivos con los audios que la red usa para reproducirlos en voz alta cada vez que se detecte un objeto

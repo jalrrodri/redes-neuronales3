@@ -1,0 +1,1 @@
+aqui van los datos de entrenamiento que usa la red a la hora de realizar una predicción.
