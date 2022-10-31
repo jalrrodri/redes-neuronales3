@@ -28,7 +28,13 @@ tam_filtro1 = (4, 4)
 tam_filtro2 = (3, 3)  # Tamaños de los filtros 1 2 y 3
 tam_filtro3 = (2,2)
 tam_pool = (2,2) #Tamaño del filtro en max pooling
-clases = 3 #3 objetos (manzanas, banano, papaya)
+while True:
+    try:
+        clases = float(input('Ingrese el numero de objetos a entrenar: '))
+        break
+    except ValueError:
+        print('Por favor ingrese solo numeros: ')
+
 lr = 0.0005 #Ajustes de la red neuronal para acercarse a una solución optima
 
 #Pre-Procesamiento de las imagenes
