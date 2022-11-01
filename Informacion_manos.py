@@ -6,18 +6,6 @@ import mediapipe as mp
 
 
 #-----------------------------------Se crea una clase--------------------------
-# class detectormanos():
-#     #---------------------------------Se incializa los parametros de la deteccion----------------------------
-#     def __init__(self, mode=False, maxManos = 2, Confdeteccion = 0.5, Confsegui = 0.5):
-#         self.mode = mode              #SE CREA EL OBJETO Y EL TENDRA SU PROPIA VARIABLE
-#         self.maxManos = maxManos      #LO MISMO SE HACE CON TODOS LOS OBJETOS
-#         self.Confdeteccion = Confdeteccion
-#         self.Confsegui = Confsegui
-
-#         #------------------------------Se crea los objetos que detectaran las manos y las dibujaran-----------
-
-#         self.mpmanos= mp.solutions.hands
-#         self.manos = self.mpmanos.Hands(self.mode, self.maxManos, self.Confdeteccion, self.Confsegui)
 class detectormanos():
     def __init__(self, mode=False, maxManos=1, modelComplexity=1, Confdeteccion=0.5, Confsegui=0.5):
         self.mode = mode
