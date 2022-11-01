@@ -9,8 +9,9 @@ from keras.models import Sequential #Nos permite hacer redes neuronales secuenci
 from keras.layers import Dropout, Flatten, Dense, Activation
 from keras.layers import Convolution2D, MaxPooling2D #Capas para hacer les convoluciones
 from keras import backend as K #Si hay una sesion de keras lo cerramos para tener todo Limpio
+import os
 
-K.clear_session() #Linpiamos todo
+K.clear_session() #Limpiamos todo
 
 datos_entrenamiento = 'Fotos/Entrenamiento'
 datos_validacion = 'Fotos/Validacion'
@@ -28,12 +29,7 @@ tam_filtro1 = (4, 4)
 tam_filtro2 = (3, 3)  # Tamaños de los filtros 1 2 y 3
 tam_filtro3 = (2,2)
 tam_pool = (2,2) #Tamaño del filtro en max pooling
-while True:
-    try:
-        clases = float(input('Ingrese el numero de objetos a entrenar: '))
-        break
-    except ValueError:
-        print('Por favor ingrese solo numeros: ')
+clases = len(next(os.walk('Fotos\Entrenamiento'))[1]) # retorna el numero de clases basado en el numero de carpetas en el directorio
 
 lr = 0.0005 #Ajustes de la red neuronal para acercarse a una solución optima
 
