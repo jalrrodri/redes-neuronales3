@@ -1,7 +1,9 @@
 #------------------------------Se importan las librerias -----------------------
+import string
 from time import sleep
 from xml.etree.ElementTree import tostring
 import cv2
+from gtts import gTTS
 import Informacion_manos as im #Programa el cual contiene la deteccion y seguimiento de manos
 import tts as voz
 import os
@@ -20,13 +22,13 @@ cap.set(4,altocam)
 detector = im.detectormanos(maxManos=1, Confdeteccion=0.7)  #Solo se utilizara una mano
 
 
-sleep(1)
-nombre = input('Ingrese el nombre del objeto: ')
-sleep(3)
+# sleep(1)
+# nombre = input('Ingrese el nombre del objeto: ')
+# sleep(3)
 
-def entrenar(tipo,cont):
+def entrenar(tipo,cont,nombre):
     #---------------------------------------Se crea la carpeta donde se almacenara el entrenamiento ----------------
-    global anchocam, altocam, cap, detector, nombre
+    global anchocam, altocam, cap, detector
     voz.crearaudio(nombre)
     nombre = nombre.replace(" ", "")
     direccion = 'Fotos/' + tipo
@@ -58,11 +60,14 @@ def entrenar(tipo,cont):
             if k == 27 or cont >= 300:
                 break
 
-print("Entrenando...")
-entrenar('Entrenamiento',0)
-print("Entrenamiento terminado. \nValidando...")
-entrenar('Validacion', 0)
-print("Validacion terminada.")
+for i in string.ascii_uppercase:
+    print("Entrenando...")
+    sleep(3)
+    entrenar('Entrenamiento',0,i)
+    print("Entrenamiento terminado. \nValidando...")
+    sleep(3)
+    entrenar('Validacion', 0,i)
+    print("Validacion terminada.")
 
 
 cap.release()
