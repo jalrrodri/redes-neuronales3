@@ -36,6 +36,7 @@ def entrenar(tipo,cont,nombre):
     if not os.path.exists(carpeta):
         print('carpeta creada: ', carpeta)
         os.makedirs(carpeta)
+        sleep(3)
     
     while True:
         #------------------------------------ Vamos a encontrar los puntos de la mano---------------------
@@ -62,10 +63,8 @@ def entrenar(tipo,cont,nombre):
 
 for i in string.ascii_uppercase:
     print("Entrenando...")
-    sleep(3)
     entrenar('Entrenamiento',0,i)
     print("Entrenamiento terminado. \nValidando...")
-    sleep(3)
     entrenar('Validacion', 0,i)
     print("Validacion terminada.")
 
