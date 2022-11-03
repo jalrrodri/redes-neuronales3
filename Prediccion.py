@@ -58,7 +58,7 @@ while True:
         vector = cnn.predict(x) # Sera un arreglo de 2 dimensiones, donde se va a poner 1 en la clase que crea correcta
         resultado = vector[0] # [1,0,0] [0,1,0] [0,0,1]
         respuesta = np.argmax(resultado) #Nos entrega el indice del valor más alto
-        predicciones = list(range(0,27))
+        predicciones = list(range(0,3))
         if respuesta in predicciones:
             print(resultado)
             #cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
