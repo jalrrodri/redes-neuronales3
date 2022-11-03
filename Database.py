@@ -54,10 +54,6 @@ def entrenar(tipo,cont,nombre):
             obje = cv2.resize(data, (200,200), interpolation=cv2.INTER_CUBIC) # Se redimenciona las fotos
             cv2.imwrite(carpeta + "/Objeto_{}.jpg".format(cont), obje)
             cont = cont + 1
-
-
-
-
             cv2.imshow("Base Datos", frame)
             k = cv2.waitKey(1)
             if k == 27 or cont >= 300:
