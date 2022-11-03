@@ -69,11 +69,13 @@ while True:
             #cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
             cv2.putText(frame, '{}'.format(
                 dire_img[respuesta]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            t = Timer(5, voz('{}'.format(dire_img[respuesta])))
+            t.start()
         else:
             cv2.putText(frame, 'OBJETO DESCONOCIDO', (x1, y1 - 5), 1,1.3, (0, 0, 0), 1, cv2.LINE_AA)
             # voz("Objetodesconocido.mp3")
-            # t = Timer(5, voz("Objetodesconocido.mp3"))
-            # t.start()
+            t = Timer(5, voz("Objetodesconocido.mp3"))
+            t.start()
 
     cv2.imshow("Clasificador", frame)
     k = cv2.waitKey(1)
