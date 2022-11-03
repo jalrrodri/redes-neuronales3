@@ -37,6 +37,8 @@ def entrenar(tipo,cont,nombre):
         print('carpeta creada: ', carpeta)
         os.makedirs(carpeta)
         sleep(3)
+    else:
+        return print("saltando a la siguiente letra..."), sleep(2)
     
     while True:
         #------------------------------------ Vamos a encontrar los puntos de la mano---------------------
