@@ -12,11 +12,6 @@ from threading import Timer
 #-------------------------------------------------------------Funcion para decir el objeto en voz alta------------------------------------------------------------
 def voz(nombre_objeto):
     return playsound(u"audio/" + nombre_objeto + ".mp3")
-# una_vez = 0
-# while 1:
-#     if una_vez == 0:
-#         voz()
-#         una_vez = 1
 
 #------------------------------------------------------ Ubicacion del modelo y los pesos ---------------------------------------------------------
 modelo = 'tmp\saved_model\SavedModel.h5'
