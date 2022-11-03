@@ -22,13 +22,11 @@ cap.set(4,altocam)
 detector = im.detectormanos(maxManos=1, Confdeteccion=0.7)  #Solo se utilizara una mano
 
 
-# sleep(1)
-# nombre = input('Ingrese el nombre del objeto: ')
-# sleep(3)
 
-def entrenar(tipo,cont,nombre):
+nombre = input('Ingrese el nombre del objeto: ')
+def entrenar(tipo,cont):
     #---------------------------------------Se crea la carpeta donde se almacenara el entrenamiento ----------------
-    global anchocam, altocam, cap, detector
+    global anchocam, altocam, cap, detector, nombre
     voz.crearaudio(nombre)
     nombre = nombre.replace(" ", "")
     direccion = 'Fotos/' + tipo
@@ -59,13 +57,11 @@ def entrenar(tipo,cont,nombre):
             if k == 27 or cont >= 300:
                 break
 
-for i in string.ascii_uppercase:
-    print("Entrenando...")
-    entrenar('Entrenamiento',0,i)
-    print("Entrenamiento terminado. \nValidando...")
-    entrenar('Validacion', 0,i)
-    print("Validacion terminada.")
 
-
+print("Entrenando...")
+entrenar('Entrenamiento',0)
+print("Entrenamiento terminado. \nValidando...")
+entrenar('Validacion', 0)
+print("Validacion terminada.")
 cap.release()
 cv2.destroyAllWindows()
