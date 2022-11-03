@@ -1,5 +1,4 @@
 #----------------------------------------- Se importan las librerias ------------------------------------------
-from ast import While
 import cv2
 import Informacion_manos as im
 from playsound import playsound
@@ -8,6 +7,16 @@ import  numpy as np
 from keras_preprocessing.image import  load_img, img_to_array
 from tensorflow.python.keras.models import load_model
 import time
+from threading import Timer
+
+#-------------------------------------------------------------Funcion para decir el objeto en voz alta------------------------------------------------------------
+def voz(nombre_objeto):
+    return playsound(u"audio/" + nombre_objeto + ".mp3")
+# una_vez = 0
+# while 1:
+#     if una_vez == 0:
+#         voz()
+#         una_vez = 1
 
 #------------------------------------------------------ Ubicacion del modelo y los pesos ---------------------------------------------------------
 modelo = 'tmp\saved_model\SavedModel.h5'
@@ -34,7 +43,6 @@ cap.set(4, altocam)
 #-------------------------------------------------------------Se declara el detector ------------------------------------------------------------
 detector = im.detectormanos(maxManos=1, Confdeteccion=0.7) #Solo se utilizara una mano
 
-
 while True:
     #------------------------Se va a encontrar los puntos de la mano ----------------------------------------------------------------
     ret, frame = cap.read()
@@ -55,31 +63,232 @@ while True:
         vector = cnn.predict(x) # Sera un arreglo de 2 dimensiones, donde se va a poner 1 en la clase que crea correcta
         resultado = vector[0] # [1,0,0] [0,1,0] [0,0,1]
         respuesta = np.argmax(resultado) #Nos entrega el indice del valor más alto
-        contador = 0
         if respuesta == 0:
             print(resultado)
             #cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
-            cv2.putText(frame, '{}'.format(dire_img[0]), (x1, y1 - 100), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
-            while True:
-                playsound(u"audio/" + "{}".format(dire_img[0]) + ".mp3")
-                contador = False
-            
+            cv2.putText(frame, '{}'.format(dire_img[0]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[0]))
+            # t = Timer(5, voz('{}'.format(dire_img[0])))
+            # t.start()
         elif respuesta == 1:
             print(resultado)
             # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
-            cv2.putText(frame, '{}'.format(dire_img[1]), (x1, y1 - 100), 1, 2.5, (255, 255, 0), 3, cv2.LINE_AA)
-            while True:
-                playsound(u"audio/" + "{}".format(dire_img[1]) + ".mp3")
+            cv2.putText(frame, '{}'.format(dire_img[1]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
         elif respuesta == 2:
             print(resultado)
             # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
-            cv2.putText(frame, '{}'.format(dire_img[2]), (x1, y1 - 100), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
-            while True:
-                playsound(u"audio/" + "{}".format(dire_img[2]) + ".mp3")
+            cv2.putText(frame, '{}'.format(dire_img[2]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 3:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[3]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 4:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[4]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 5:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[5]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 6:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[6]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 7:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[7]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 8:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[8]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 9:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[9]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 10:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[10]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 11:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[11]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 12:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[12]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 13:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[13]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 14:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[14]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 15:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[15]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 16:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[16]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 17:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[17]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 18:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[18]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 19:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[19]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 20:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[20]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 21:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[21]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 22:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[22]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 23:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[23]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 24:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[24]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 25:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[25]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
+        elif respuesta == 26:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (255, 0, 255), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[26]), (x1, y1 - 5), 1, 2.5, (0, 0, 255), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[2]))
+            # t = Timer(5, voz('{}'.format(dire_img[2])))
+            # t.start()
+        elif respuesta == 27:
+            print(resultado)
+            # cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
+            cv2.putText(frame, '{}'.format(
+                dire_img[27]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            # voz('{}'.format(dire_img[1]))
+            # t = Timer(5, voz('{}'.format(dire_img[1])))
+            # t.start()
         else:
-            cv2.putText(frame, 'OBJETO DESCONOCIDO', (x1, y1 - 5), 1,1.3, (0, 255, 255), 1, cv2.LINE_AA)
-            while True:
-                playsound(u"audio\Objetodesconocido.mp3")
+            cv2.putText(frame, 'OBJETO DESCONOCIDO', (x1, y1 - 5), 1,1.3, (0, 0, 0), 1, cv2.LINE_AA)
+            # voz("Objetodesconocido.mp3")
+            # t = Timer(5, voz("Objetodesconocido.mp3"))
+            # t.start()
 
     cv2.imshow("Clasificador", frame)
     k = cv2.waitKey(1)
@@ -87,4 +296,3 @@ while True:
         break
 cap.release()
 cv2.destroyAllWindows()
-
