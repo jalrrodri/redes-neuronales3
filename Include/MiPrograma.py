@@ -1,1 +1,0 @@
-print ("intale IDE para Paython")

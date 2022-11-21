@@ -62,8 +62,7 @@ while True:
         if respuesta in predicciones:
             print(resultado)
             #cv2.rectangle(frame,(x1, y1), (x2, y2), (0,255, 0), 3)
-            cv2.putText(frame, '{}'.format(
-                dire_img[respuesta]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
+            cv2.putText(frame, '{}'.format(dire_img[respuesta]), (x1, y1 - 5), 1, 2.5, (0, 255, 0), 3, cv2.LINE_AA)
             t = Timer(5, voz('{}'.format(dire_img[respuesta])))
             t.start()
         else:
